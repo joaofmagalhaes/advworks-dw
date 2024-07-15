@@ -1,0 +1,167 @@
+version: 2
+
+sources:
+  - name: humanresources
+    schema: humanresources
+    tables:
+     - name: employee
+  - name: person
+    schema: person
+    tables:
+      - name: person
+      - name: businessentity
+      - name: stateprovince
+      - name: countryregion
+  - name: production
+    schema: production
+    tables:
+      - name: product
+      - name: productinventory
+      - name: productcategory
+      - name: productsubcategory
+  - name: purchasing
+    schema: purchasing
+    tables:
+      - name: shipmethod
+      - name: productvendor
+      - name: vendor
+      - name: purchaseorderdetail
+      - name: purchaseorderheader
+
+
+models:
+  - name: stg_employee
+    columns:
+      - name: employee_id
+        description: "A unique identifier for the employee"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "Employee first name"
+      - name: middle_name
+        description: "Employee midle name"
+      - name: last_name
+        description: "Employee last name"
+      - name: birth_date
+        description: "Birthday"
+      - name: gender
+        description: "Gender"
+      - name: marital_status
+        description: "Married"
+      - name: salaried_flag
+        description: "Salary"  
+      - name: vacation_hours
+        description: "Vacation time" 
+      - name: sick_leave_hours
+        description: "Sick Time" 
+      - name: last_update
+        description: "Person last update"
+      - name: job_title
+        description: "Employee tittle"
+  - name: stg_products
+    columns:
+      - name: product_id
+        description: "A unique identifier for the product"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "The name of the product"
+      - name: product_number
+        description: "The number of the product"
+      - name: category
+        description: "The category of the product"
+      - name: subcategory
+        description: "The subcategory of the product"
+      - name: color
+        description: "The color of the product"
+      - name: size
+        description: "The size of the product"
+  - name: stg_shipment
+    columns:
+      - name: delivery_method_id
+        description: "The unique identifier for the delivery method"
+        tests:
+          - unique
+          - not_null      
+      - name: delivery_name
+        description: "The name of the deliver"
+      - name: delivery_base
+        description: "The base cost of the delivery"
+      - name: delivery_rate
+        description: "The rate of the delivery"
+      - name: modified_date
+        description: "Date of modification"      
+  - name: stg_vendor
+    columns:
+      - name: vendor_ID
+        description: "A unique identifier for the vendor"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "The name of the vendor"
+      - name: account_number
+        description: "Number of the account"
+      - name: credit_rating
+        description: "The credit rating of the vendor"
+      - name: preferred_vendor_status
+        description: "Inditify if the vendor is a preferred vendor"
+      - name: active_flag
+        description: "Identify if the vendor is active"
+      - name: purchasing_web_service_url
+        description: "The URL of the purchasing web service"
+      - name: standard_price
+        description: "Standard price of the product"
+  - name: stg_purchasing
+    columns:
+      - name: order_id
+        description: "A unique identifier for the order"
+        tests:
+          - unique
+          - not_null
+      - name: vendor_id
+        description: "A unique identifier for the vendor"
+        tests:
+          - unique
+          - not_null
+      - name: employee_id
+        description: "A unique identifier for the employee"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "A unique identifier for the product"
+        tests:
+          - unique
+          - not_null
+      - name: delivery_method_id
+        description: "A unique identifier for the delivery method"
+        tests:
+          - unique
+          - not_null
+      - name: orderqty
+        description: "Order quantity"
+      - name: qt_received
+        description: "Received quantity"
+      - name: unit_price
+        description: "Product price"
+      - name: due_date
+        description: "Expected date of delivery"
+      - name: delivery_satus
+        description: "Delivery status"
+      - name: revision_number
+        description: "Revision number"
+      - name: order_date
+        description: "Date of the order"
+      - name: delivery_date
+        description: "Date of delivery"
+      - name: sub_total
+        description: "Order subtotal."
+      - name: tax_amount
+        description: "Tax amount"
+      - name: freight
+        description: "Delivery cost"
+      - name: modified_date
+        description: "The date of modification"

@@ -1,0 +1,173 @@
+version: 2
+
+models:
+  - name: fact_purchasing
+    description: Fact table
+    columns:
+      - name: order_id
+        description: "A unique identifier for the order"
+        tests:
+          - unique
+          - not_null
+      - name: sk_vendor
+        description: "A unique identifier for the vendor"
+        tests:
+          - unique
+          - not_null
+      - name: sk_employee
+        description: "A unique identifier for the employee"
+        tests:
+          - unique
+          - not_null
+      - name: sk_product
+        description: "A unique identifier for the product"
+        tests:
+          - unique
+          - not_null
+      - name: sk_shipment
+        description: "A unique identifier for the shipment company"
+        tests:
+          - unique
+          - not_null
+      - name: sk_order_date
+        description: "Order date"
+      - name: sk_shipment_date
+        description: "Delivery date"
+      - name: delivery_satus
+        description: "Delivery status"
+      - name: due_date
+        description: "Date the product will be received."
+      - name: orderqty
+        description: "Order quantity"
+      - name: qty_received
+        description: "Received quantity"
+      - name: unit_price
+        description: "Single product price"
+      - name: order_subtotal
+        description: "Order subtotal."
+      - name: tax_amount
+        description: "Tax amount"
+      - name: freight
+        description: "Shipping cost"     
+  - name: dim_date
+    description: Date dimension table
+  - name: dim_employee
+    description: Dimension table for the employees.
+    columns:
+      - name: sk_employee
+        description: "A unique identifier for each record in the table"
+        tests:
+          - unique
+          - not_null
+      - name: employee_id
+        description: "A unique identifier for the employee"
+      - name: job_title
+        description: "The job title of the employee"
+      - name: birth_date
+        description: "Date of birth"
+      - name: marital_status
+        description : "Marital Status"
+      - name: gender
+        description: "Gender"
+      - name: salaried_flag
+        description: "Salary"
+      - name: vacation_hours
+        description: "Vacation hours"
+      - name: sick_leave_hours
+        description: "Sick days"
+      - name: employee_last_update
+        description: "Last update"
+      - name: first_name
+        description: "Employee first name"
+      - name: middle_name
+        description: "Employee midle name"
+      - name: last_name
+        description: "Employee last name"
+      - name: valid_from
+        description: "This record is valid since this datetime"
+      - name: valid_to
+        description: "This record is valid until this datetime"
+      - name: last_updated_at
+        description: "Timestamp of the last update to this record"
+  - name: dim_product
+    description: Dimension table for the products. Each record represents the state of a product between the dates `valid_from` and `valid_to`.
+    columns:
+      - name: sk_product
+        description: "A unique identifier for this record in the table"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "A unique identifier for the product"
+      - name: product_name
+        description: "Product name"
+      - name: product_number
+        description: "Product number"
+      - name: category
+        description: "Product category"
+      - name: subcategory
+        description: "Product subcategory"
+      - name: color
+        description: "Product color"
+      - name: size
+        description: "Product size"
+      - name: valid_from
+        description: "This record is valid since this datetime."
+      - name: valid_to
+        description: "This record is valid until this datetime."
+      - name: last_updated_at
+        description: "Timestamp of the last update to this record."
+  - name: dim_shipment
+    description: Dimension table for the delivery companies.
+    columns:
+      - name: sk_shipment
+        description: "A unique identifier for this record in the table"
+        tests:
+          - unique
+          - not_null
+      - name: delivery_method_ID
+        description: "A unique identifier for the delivery company"
+      - name: delivery_name
+        description: "The name of the delivery company"
+      - name: delivery_base
+        description: "The base value of the delivery"
+      - name: delivery_rate
+        description: "Delivery rate"
+      - name: modified_date
+        description: "Date of modification"
+      - name: valid_from
+        description: "This record is valid since this datetime."
+      - name: valid_to
+        description: "This record is valid until this datetime."
+      - name: last_updated_at
+        description: "Timestamp of the last update to this record."
+  - name: dim_vendor
+    description: Dimension table for the vendors.
+    columns:
+      - name: sk_vendor
+        description: "A unique identifier for this record in the table"
+        tests:
+          - unique
+          - not_null
+      - name: vendor_ID
+        description: "A unique identifier for the vendor"
+      - name: name
+        description: "Vendor name"
+      - name: account_number
+        description: "Account number"
+      - name: credit_rating
+        description: "Customer rating"
+      - name: preferred_vendor_status
+        description: "Boolean - Preferred vendor status"
+      - name: active_flag
+        description: "Boolean - Flag active"
+      - name: purchasing_web_service_url
+        description: "Url of the purching web service"
+      - name: standard_price
+        description: "Product standard price" 
+      - name: valid_from
+        description: "This record is valid since this datetime."
+      - name: valid_to
+        description: "This record is valid until this datetime."
+      - name: last_updated_at
+        description: "Timestamp of the last update to this record."
